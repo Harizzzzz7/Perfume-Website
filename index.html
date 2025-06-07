@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perfume Boutique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #fdfdfd;
+      color: #333;
+    }
+    header {
+      background: #1a1a1a;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+    nav {
+      background: #333;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #ffcccb;
+    }
+    .section {
+      padding: 50px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1611095973518-3ef8fc57c540') center/cover no-repeat;
+      color: white;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      font-family: 'Playfair Display', serif;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .product {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      background: #fff;
+      transition: box-shadow 0.3s ease;
+    }
+    .product:hover {
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .product img {
+      max-width: 100%;
+      border-radius: 5px;
+    }
+    .btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .btn:hover {
+      background: #555;
+    }
+    #chatbot {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+      max-height: 400px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    #chatbot-header {
+      background: #333;
+      color: white;
+      padding: 10px;
+      border-radius: 8px 8px 0 0;
+      text-align: center;
+    }
+    #chatbot-body {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+    #chatbot-input {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+    #chatbot-input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 0 0 0 8px;
+    }
+    #chatbot-input button {
+      padding: 10px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 0 0 8px 0;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f0f0f0;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Perfume Boutique</h1>
+  <p>Luxury Scents, Timeless Memories</p>
+</header>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#products">Products</a>
+  <a href="#chatbot" onclick="toggleChat()">AI Chatbot</a>
+</nav>
+
+<section id="home" class="hero">
+  Discover the essence of elegance
+</section>
+
+<section id="about" class="section">
+  <h2>About Us</h2>
+  <p>Welcome to Perfume Boutique, your go-to destination for exclusive, high-quality fragrances crafted with love. Our mission is to elevate your presence through scents that speak your story.</p>
+</section>
+
+<section id="products" class="section">
+  <h2>Our Collection</h2>
+  <div class="product-grid">
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1589987601940-bd80462ce4f1" alt="Floral">
+      <h3>Floral Elegance</h3>
+      <p>Soft, romantic and classic.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1565976469782-9e632c4a7b79" alt="Woody">
+      <h3>Woody Mystic</h3>
+      <p>Warm, earthy, and masculine.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1556228720-195a672e60c2" alt="Citrus">
+      <h3>Citrus Spark</h3>
+      <p>Fresh, bright, and energizing.</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+<div id="chatbot">
+  <div id="chatbot-header">AI Chatbot</div>
+  <div id="chatbot-body">Hello! How can I help you choose your perfect scent today?</div>
+  <div id="chatbot-input">
+    <input type="text" placeholder="Type your message...">
+    <button onclick="sendChat()">Send</button>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 Perfume Boutique. All rights reserved.
+</footer>
+
+<script>
+  function toggleChat() {
+    const chatbot = document.getElementById('chatbot');
+    chatbot.style.display = chatbot.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  function sendChat() {
+    const input = document.querySelector('#chatbot-input input');
+    const body = document.getElementById('chatbot-body');
+    const message = input.value.trim();
+    if (message) {
+      const userMsg = document.createElement('div');
+      userMsg.textContent = "You: " + message;
+      body.appendChild(userMsg);
+      const botReply = document.createElement('div');
+      botReply.textContent = "Bot: I'm here to help! Please tell me if you prefer floral, woody, or citrus scents.";
+      body.appendChild(botReply);
+      body.scrollTop = body.scrollHeight;
+      input.value = '';
+    }
+  }
+</script>
+
+</body>
+</html>
